@@ -1,35 +1,29 @@
 function migratoryBirds(arr) {
-  //create an empty object/hashmap to store birdId: tally
+  //create hash map to store keys and values for seen birds
   let seenBirds = {};
-
+  //for each to tally each bird
+  
   arr.forEach((bird) => {
-      //setting tally for each instance of bird
-      if (!seenBirds[bird]) {
-          seenBirds[bird] = 1;
+      if(!seenBirds[bird]){
+          seenBirds[bird] = 1
       } else {
           seenBirds[bird]++
       }
   })
-
-  //setting these variables for comparison
+  
+  //create two variables for key and value for comparison 
   let birdId = Infinity;
   let total = 0;
-
-  //looping through obj
-  for (let key in seenBirds) {
-      //if bird tally is more than total 
-      if (seenBirds[key] > total) {
-          //set total to value
-          total = seenBirds[key];
-          birdId = key;
-      //if tallys are the same
-      } else if (seenBirds[key] === total) {
-          if (birdId > key) {
+  //loop through object to compare values
+  for(let key in seenBirds){
+      //set values to declared variables
+      if(seenBirds[key] > total){
+          total = seenBirds[key]
+          birdId = key
+      }//condition for if values are the same
+      if( total === seenBirds[key] && birdId > key){
               birdId = key
-          }
       }
   }
   return birdId;
 }
-
-//NOTE: go back for possible optimization
